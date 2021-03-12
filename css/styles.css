@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    /*--main-back: #152108;*/
+    --main-back:     #0B1104;
+    --main-fore:     #9EF943;
+    /*--main-fore: #D8F2FF;*/
+    --main-fore-low: #22330E;
+}
+
+/*@font-face {*/
+/*  font-family: 'WOPR';*/
+/*  src: url( '../font/wopr-terminal.ttf')  format( 'truetype' );*/
+/*}*/
+
+
+body {
+    background: var(--main-back);
+    background: radial-gradient( circle, var(--main-fore-low) 0%, var(--main-back) 100%);
+    color: var(--main-fore);
+    height: 100vh;
+}
+
+body, pre {
+    font-family: 'WOPR', 'VT323', monospace;
+    font-size: 30px;
+    line-height: 0.8em;
+    font-variant-ligatures: none;
+    /*text-transform: uppercase;*/
+}
+
+h1, h2, h3, h4, h5, p {
+    font-weight: normal;
+}
+
+body::after {
+    /*display: none;*/
+    content: '';
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 90;
+    background: repeating-linear-gradient( rgba(0,0,0,0.1) 0,
+                                           rgba(0,0,0,0.1) 2px,
+                                           rgba(0,0,0,0.3) 2px,
+                                           rgba(0,0,0,0.3) 4px );
+    animation: shimmer 7s linear infinite;
+}
+
+@keyframes shimmer {
+    0%   { opacity: 100%; }
+    35%  { opacity: 90%; }
+    40%  { opacity: 90%; }
+    50%  { opacity: 70%; }
+    55%  { opacity: 70%; }
+    60%  { opacity: 80%; }
+    65%  { opacity: 80%; }
+    70%  { opacity: 60%; }
+    90%  { opacity: 60%; }
+    100% { opacity: 100%; }
+}
+
+body::before {
+    content: '';
+    pointer-events: none;
+    position: fixed;
+    top: -10vh;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    z-index: 99;
+    background: linear-gradient( var(--main-back)   0%,
+                                 var(--main-fore)  10%,
+                                 var(--main-back) 100% );
+    opacity: 0.02;
+    animation: scanline 13s linear infinite;
+}
+
+@keyframes scanline {
+    0%   { top: -10vh; }
+    70%  { top: -10vh; }
+    100% { top: 100vh; }
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    overflow-y: auto;
+    padding: 1em 0.5em;
+    scrollbar-width: thin;
+    scrollbar-color: var(--main-fore-low) var(--main-back);
+}
+
+main::-webkit-scrollbar {
+    width: 11px;
+}
+
+main::-webkit-scrollbar-track {
+    background: var(--main-back);
+}
+
+main::-webkit-scrollbar-thumb {
+    background-color: var(--main-fore-low) ;
+    border: 2px solid var(--main-back);
+}
+
+
+#wopr {
+    width: 100%;
+    height: calc(100vh - 2em);
+    resize: none;
+    color: var(--main-fore);
+    background: transparent;
+    caret-color: var(--main-fore);
+    border: none;
+    resize: none;
+    outline: none;
+    text-shadow: 0 0 1em var(--main-fore);
+}
+
+#wopr :last-child {
+    padding-bottom: 1em;
+}
+
+#wopr :first-child {
+    padding-top: 1em;
+}
+
+.output {
+    min-width: 1em;
+    min-height: 0.8em;
+    white-space: pre;
+}
+
+.input {
+    outline: 0px solid transparent;
+    caret-color: transparent;
+}
+
+.input::before {
+    /*content: '> ';*/
+}
+
+#input::after,
+#output::after {
+    content: ".";
+    font-size: 0.8em;
+    background: var(--main-fore);
+}
+
+#input::after {
+    animation: blink 750ms infinite;
+}
+
+@keyframes blink {
+    0%   { opacity: 100%; }
+    50%  { opacity: 100%; }
+    51%  { opacity: 0%; }
+    100% { opacity: 0%; }
+}
+
+
+@media screen and (min-width: 800px) {
+    body {
+        font-size: 36px;
+    }
+
+    main {
+    }
+
+    #wopr {
+        padding: 0 calc((100vw - 72ch) / 2);
+    }
+}

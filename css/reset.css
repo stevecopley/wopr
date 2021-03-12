@@ -1,0 +1,59 @@
+/*------------------------------------------------------------
+    Basic CSS Reset to give us a clean starting point
+    Based closely on https://github.com/jgthms/minireset.css
+  ------------------------------------------------------------*/
+
+/* Size block borders logically and set a base text size */
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Set a base text size. All other text defined in REMs */
+html {
+    font-size: 16px;
+}
+
+/* Clear gaps between and within blocks */
+html, body,
+h1, h2, h3, h4, h5, h6, p,
+ol, ul, li, dl, dt, dd,
+blockquote, figure, fieldset, legend, textarea, pre {
+    margin: 0;
+    padding: 0;
+}
+
+/* Clear default list styling */
+ol, ul {
+  list-style: none;
+}
+
+/* Remove bold from heading */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+/* Stop images breaking out of containers */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Remove default spacing on tables */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td, th {
+    padding: 0;
+}
+
+/* Remove default spacing for form elements */
+button, input, select, textarea {
+    margin: 0;
+}
+
